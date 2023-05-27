@@ -1,17 +1,16 @@
-// run `node index.js` in the terminal
-const http = require('http');
+const express = require('express');
 
-const port = process.env.PORT || 3000;
-const host = '127.0.0.1';
+const PORT = process.env.PORT || 3000;
+const hostname = '127.0.0.1';
 
-const server = http.createServer((req, res) => {
-  if (req.url === '/') {
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World\n');
-  }
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello World');
 });
-console.log(`Hello Node.js v${process.versions.node}!`);
 
-server.listen(port, host, () => {
-  console.log(`The server is running on port ${port} and host ${host}`);
+app.listen(PORT, hostname, () => {
+  console.log(
+    `The express app is running on the port ${PORT} and host ${hostname}`
+  );
 });
